@@ -16,6 +16,7 @@
 		3D100BBD17554A4800E6F714 /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D100BB417554A4800E6F714 /* pin@2x.png */; };
 		3D100BBE17554A4800E6F714 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D100BB517554A4800E6F714 /* poweredByFoursquare_gray.png */; };
 		3D100BBF17554A4800E6F714 /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D100BB617554A4800E6F714 /* poweredByFoursquare_gray@2x.png */; };
+		3D100BC217554DE700E6F714 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D100BC117554DE700E6F714 /* Venue.m */; };
 		9CE5E8B517553E22004D25A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE5E8B417553E22004D25A8 /* UIKit.framework */; };
 		9CE5E8B717553E22004D25A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE5E8B617553E22004D25A8 /* Foundation.framework */; };
 		9CE5E8B917553E22004D25A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE5E8B817553E22004D25A8 /* CoreGraphics.framework */; };
@@ -45,6 +46,8 @@
 		3D100BB417554A4800E6F714 /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		3D100BB517554A4800E6F714 /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
 		3D100BB617554A4800E6F714 /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
+		3D100BC017554DE700E6F714 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = ../Foursquare2/Venue.h; sourceTree = "<group>"; };
+		3D100BC117554DE700E6F714 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = ../Foursquare2/Venue.m; sourceTree = "<group>"; };
 		9CE5E8B117553E22004D25A8 /* FlickSquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickSquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE5E8B417553E22004D25A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9CE5E8B617553E22004D25A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -139,6 +142,8 @@
 				9CE5E8CC17553E22004D25A8 /* MainStoryboard.storyboard */,
 				9CE5E8CF17553E22004D25A8 /* ViewController.h */,
 				9CE5E8D017553E22004D25A8 /* ViewController.m */,
+				3D100BC017554DE700E6F714 /* Venue.h */,
+				3D100BC117554DE700E6F714 /* Venue.m */,
 				9CE5E8BB17553E22004D25A8 /* Supporting Files */,
 			);
 			path = FlickSquare;
@@ -236,6 +241,7 @@
 				3D100BB817554A4800E6F714 /* FSRequester.m in Sources */,
 				3D100BB917554A4800E6F714 /* FSTargetCallback.m in Sources */,
 				3D100BBA17554A4800E6F714 /* FSWebLogin.m in Sources */,
+				3D100BC217554DE700E6F714 /* Venue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
