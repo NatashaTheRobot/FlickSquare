@@ -7,11 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "Foursquare2.h"
+#import "Venue.h"
 
 @interface ViewController ()
 {
     __weak IBOutlet MKMapView *mapView;
+    
+    __weak IBOutlet UIActivityIndicatorView *activityIndicator;
     CLLocationManager *locationMananger;
+    
+    NSMutableArray *venuesArray;
 }
 
 -(void)showCurrentLocation:(CLLocation *)location;
@@ -24,7 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    [activityIndicator startAnimating];
+    
+    venuesArray = [NSMutableArray array];
+    
     locationMananger = [[CLLocationManager alloc] init];
     locationMananger.delegate = self;
     
@@ -33,9 +43,43 @@
 
 - (void)getFoursquareVenuesWithLatitude:(CGFloat)latitude andLongitude:(CGFloat)longitude
 {
-    NSLog(@"%f", latitude);
-    NSLog(@"%f", longitude);
-    // get api
+    NSLog(@"worked");
+    
+    [Foursquare2 searchVenuesNearByLatitude:[NSNumber numberWithFloat:latitude]
+                                  longitude:[NSNumber numberWithFloat:longitude]
+                                 accuracyLL:nil
+                                   altitude:nil
+                                accuracyAlt:nil
+                                      query:nil
+                                      limit:[NSNumber numberWithInt:100]
+                                     intent:0
+                                     radius:[NSNumber numberWithInt:800]
+                                 categoryId:nil
+                                   callback:^(BOOL success, id result) {
+                                       
+                                       if (success) {
+                                           
+                                           NSArray *apiVenuesArray = [result valueForKeyPath:@"response.venues"];
+                                           
+                                           for (NSDictionary *venue in apiVenuesArray) {
+                                               
+                                               Venue *newVenue = [[Venue alloc] init];
+                                               
+                                               newVenue.name = [venue objectForKey:@"name"];
+                                               newVenue.latitude = [[venue valueForKeyPath:@"location.lat"] floatValue];
+                                               newVenue.longitude = [[venue valueForKeyPath:@"location.lng"] floatValue];
+                                               
+                                               [venuesArray addObject:newVenue];
+                                            }
+                                       
+                                        } else {
+                                            
+                                            NSLog(@"ERROR: %@", result);
+         
+                                        }
+                                        [activityIndicator stopAnimating];
+                                   }];
+    
 }
 
 #pragma mark - Location manager
