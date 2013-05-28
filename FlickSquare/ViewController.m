@@ -9,6 +9,10 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+{
+    __weak IBOutlet MKMapView *mapView;
+    CLLocationManager *locationMananger;
+}
 
 @end
 
@@ -17,13 +21,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    locationMananger = [[CLLocationManager alloc] init];
+    locationMananger.delegate = self;
+    
+    [locationMananger startUpdatingLocation];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)getFoursquareVenuesWithLatitude:(CGFloat)latitude andLongitude:(CGFloat)longitude
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"%f", latitude);
+    NSLog(@"%f", longitude);
+    // get api
+}
+
+#pragma mark - Location manager
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *location = locations[0];
+
+    [self getFoursquareVenuesWithLatitude:(CGFloat)location.coordinate.latitude
+                             andLongitude:(CGFloat)location.coordinate.longitude];
+    
+    [locationMananger stopUpdatingLocation];
 }
 
 @end
