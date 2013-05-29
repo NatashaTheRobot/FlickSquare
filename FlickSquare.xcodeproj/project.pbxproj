@@ -17,6 +17,8 @@
 		3D100BBE17554A4800E6F714 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D100BB517554A4800E6F714 /* poweredByFoursquare_gray.png */; };
 		3D100BBF17554A4800E6F714 /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D100BB617554A4800E6F714 /* poweredByFoursquare_gray@2x.png */; };
 		3D100BC217554DE700E6F714 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D100BC117554DE700E6F714 /* Venue.m */; };
+		3D100C261756647300E6F714 /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D100C251756647300E6F714 /* VenueAnnotation.m */; };
+		3D100C291756652300E6F714 /* VenueAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D100C281756652300E6F714 /* VenueAnnotationView.m */; };
 		9CE5E8B517553E22004D25A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE5E8B417553E22004D25A8 /* UIKit.framework */; };
 		9CE5E8B717553E22004D25A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE5E8B617553E22004D25A8 /* Foundation.framework */; };
 		9CE5E8B917553E22004D25A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE5E8B817553E22004D25A8 /* CoreGraphics.framework */; };
@@ -48,6 +50,10 @@
 		3D100BB617554A4800E6F714 /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
 		3D100BC017554DE700E6F714 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = ../Foursquare2/Venue.h; sourceTree = "<group>"; };
 		3D100BC117554DE700E6F714 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = ../Foursquare2/Venue.m; sourceTree = "<group>"; };
+		3D100C241756647300E6F714 /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
+		3D100C251756647300E6F714 /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
+		3D100C271756652300E6F714 /* VenueAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotationView.h; sourceTree = "<group>"; };
+		3D100C281756652300E6F714 /* VenueAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotationView.m; sourceTree = "<group>"; };
 		9CE5E8B117553E22004D25A8 /* FlickSquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickSquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE5E8B417553E22004D25A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9CE5E8B617553E22004D25A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +150,10 @@
 				9CE5E8D017553E22004D25A8 /* ViewController.m */,
 				3D100BC017554DE700E6F714 /* Venue.h */,
 				3D100BC117554DE700E6F714 /* Venue.m */,
+				3D100C241756647300E6F714 /* VenueAnnotation.h */,
+				3D100C251756647300E6F714 /* VenueAnnotation.m */,
+				3D100C271756652300E6F714 /* VenueAnnotationView.h */,
+				3D100C281756652300E6F714 /* VenueAnnotationView.m */,
 				9CE5E8BB17553E22004D25A8 /* Supporting Files */,
 			);
 			path = FlickSquare;
@@ -242,6 +252,8 @@
 				3D100BB917554A4800E6F714 /* FSTargetCallback.m in Sources */,
 				3D100BBA17554A4800E6F714 /* FSWebLogin.m in Sources */,
 				3D100BC217554DE700E6F714 /* Venue.m in Sources */,
+				3D100C261756647300E6F714 /* VenueAnnotation.m in Sources */,
+				3D100C291756652300E6F714 /* VenueAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

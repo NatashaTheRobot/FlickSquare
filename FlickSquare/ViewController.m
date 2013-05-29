@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "Foursquare2.h"
 #import "Venue.h"
+#import "VenueAnnotation.h"
+#import "VenueAnnotationView.h"
 
 @interface ViewController ()
 {
@@ -21,7 +23,8 @@
 }
 
 -(void)showCurrentLocation:(CLLocation *)location;
-- (void)addPinToLocation:(CLLocationCoordinate2D)location;
+-(void)addPinToLocation:(CLLocationCoordinate2D)location;
+-(void)addVenueAnnotation:(Venue*)venue;
 
 @end
 
@@ -43,8 +46,7 @@
 
 - (void)getFoursquareVenuesWithLatitude:(CGFloat)latitude andLongitude:(CGFloat)longitude
 {
-    NSLog(@"worked");
-    
+       
     [Foursquare2 searchVenuesNearByLatitude:[NSNumber numberWithFloat:latitude]
                                   longitude:[NSNumber numberWithFloat:longitude]
                                  accuracyLL:nil
@@ -70,6 +72,8 @@
                                                newVenue.longitude = [[venue valueForKeyPath:@"location.lng"] floatValue];
                                                
                                                [venuesArray addObject:newVenue];
+                                               
+                                               [self addVenueAnnotation:newVenue];
                                             }
                                        
                                         } else {
@@ -82,13 +86,26 @@
     
 }
 
+-(void)addVenueAnnotation:(Venue*)venue
+{
+    
+    VenueAnnotation* vennueAnnotation = [[VenueAnnotation alloc] init];
+    
+    vennueAnnotation.coordinate = CLLocationCoordinate2DMake(venue.latitude, venue.longitude);
+    vennueAnnotation.title = venue.name;
+    
+    [mapView addAnnotation:vennueAnnotation];
+    
+    
+}
+
 #pragma mark - Location manager
 
 -(void)showCurrentLocation:(CLLocation *)location
 {
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.015;
-    span.longitudeDelta = 0.015;
+    span.latitudeDelta = 0.001;
+    span.longitudeDelta = 0.001;
     
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
     
@@ -119,6 +136,44 @@
                              andLongitude:(CGFloat)location.coordinate.longitude];
     
     [locationMananger stopUpdatingLocation];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
+{
+    NSString* venueIdentifier = @"venue";
+    NSString* pinIdentifier = @"pin";
+    
+    
+    MKAnnotationView* annotationView;
+    
+    if ([annotation isKindOfClass:[VenueAnnotation class]]) {
+        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:venueIdentifier];
+        
+    } else {
+        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+        
+        
+    }
+    
+    if(!annotationView) {
+        if ([annotation isKindOfClass:[VenueAnnotation class]]) {
+            annotationView = [[VenueAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:venueIdentifier];
+        
+        } else {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
+            ((MKPinAnnotationView*)annotationView).animatesDrop = YES;
+        }
+        annotationView.canShowCallout = YES;
+        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
+    } else {
+        
+        annotationView.annotation = annotation;
+        
+    }
+        
+    return  annotationView;
+    
 }
 
 @end
