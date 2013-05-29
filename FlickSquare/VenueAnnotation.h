@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Venue.h"
 
 @interface VenueAnnotation : NSObject <MKAnnotation>
 
@@ -17,5 +18,6 @@
 
 @property (nonatomic, strong) NSString* subtitle;
 
+@property (nonatomic, strong) Venue* venue;
 
 @end

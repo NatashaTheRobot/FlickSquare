@@ -11,10 +11,11 @@
 #import "Venue.h"
 #import "VenueAnnotation.h"
 #import "VenueAnnotationView.h"
+#import "DetailViewController.h"
 
 @interface ViewController ()
 {
-    __weak IBOutlet MKMapView *mapView;
+    __weak IBOutlet MKMapView *_mapView;
     
     __weak IBOutlet UIActivityIndicatorView *activityIndicator;
     CLLocationManager *locationMananger;
@@ -89,12 +90,13 @@
 -(void)addVenueAnnotation:(Venue*)venue
 {
     
-    VenueAnnotation* vennueAnnotation = [[VenueAnnotation alloc] init];
+    VenueAnnotation* venueAnnotation = [[VenueAnnotation alloc] init];
     
-    vennueAnnotation.coordinate = CLLocationCoordinate2DMake(venue.latitude, venue.longitude);
-    vennueAnnotation.title = venue.name;
+    venueAnnotation.coordinate = CLLocationCoordinate2DMake(venue.latitude, venue.longitude);
+    venueAnnotation.title = venue.name;
+    venueAnnotation.venue = venue;
     
-    [mapView addAnnotation:vennueAnnotation];
+    [_mapView addAnnotation:venueAnnotation];
     
     
 }
@@ -113,8 +115,8 @@
     region.span = span;
     region.center=center;
     
-    [mapView setRegion:region animated:TRUE];
-    [mapView regionThatFits:region];
+    [_mapView setRegion:region animated:TRUE];
+    [_mapView regionThatFits:region];
     
     [self addPinToLocation:center];
 }
@@ -123,7 +125,7 @@
 {
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:location];
-    [mapView addAnnotation:annotation];
+    [_mapView addAnnotation:annotation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -147,10 +149,10 @@
     MKAnnotationView* annotationView;
     
     if ([annotation isKindOfClass:[VenueAnnotation class]]) {
-        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:venueIdentifier];
+        annotationView = [_mapView dequeueReusableAnnotationViewWithIdentifier:venueIdentifier];
         
     } else {
-        annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+        annotationView = [_mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
         
         
     }
@@ -173,6 +175,21 @@
     }
         
     return  annotationView;
+    
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    
+    [self performSegueWithIdentifier:@"mapToDetail" sender:self];
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    VenueAnnotation* venueAnnotation = [_mapView selectedAnnotations][0];
+    Venue* venue = venueAnnotation.venue;
+    ((DetailViewController*)segue.destinationViewController).venue = venue;
     
 }
 
