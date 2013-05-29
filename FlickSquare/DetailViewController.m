@@ -30,10 +30,56 @@
     self.navigationItem.title = self.venue.name;
 }
 
-- (void)didReceiveMemoryWarning
+
+- (void)setVenue:(Venue *)venue
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _venue = venue;
+    
+    [self getFlickrPhotos];
+}
+
+
+- (void)getFlickrPhotos
+{
+    NSString* flickrURLString = [NSString stringWithFormat:@"%@&method=flickr.photos.search&api_key=%@&bbox=%f,%f,%f,%f&format=json&nojsoncallback=1",FLICKR_BASE_URL, FLICKR_API_KEY, self.venue.longitude - .05, self.venue.latitude - .05,self.venue.longitude + .05,self.venue.latitude + .05];
+    
+    NSURL* url = [NSURL URLWithString:flickrURLString];
+    
+    NSURLRequest* urlRequest = [NSURLRequest requestWithURL:url];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* error) {
+                               
+                               if (!error) {
+                                   
+                                   NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                                                       
+                                   NSArray* photosArray = [responseDictionary valueForKeyPath:@"photos.photo"];
+                                   
+                                   
+                                   for (NSDictionary* photoDictionary in photosArray) {
+                                    
+                                   
+                                   NSString* photoURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@_m.jpg",
+                                                         [photoDictionary objectForKey:@"farm"],
+                                                         [photoDictionary objectForKey:@"server"],
+                                                         [photoDictionary objectForKey:@"id"],
+                                                         [photoDictionary objectForKey:@"secret"]];
+                                       
+                                       NSLog(@"%@",photoURLString);
+                                       
+                                   }
+                                   
+                               } else {
+                                   NSLog(@"%@",error);
+                               }
+                                   
+                               
+                               
+                               
+                               
+                           }];
 }
 
 @end

@@ -344,8 +344,16 @@
 		9CE5E8D517553E22004D25A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FLICKR_API_KEY = 47ba17739cf66faefb12d310b055a2c7;
+				FLICKR_BASE_URL = "http://api.flickr.com/services/rest/?";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlickSquare/FlickSquare-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"FLICKR_BASE_URL=@\\\"$(FLICKR_BASE_URL)\\\"",
+					"FLICKR_API_KEY=@\\\"$(FLICKR_API_KEY)\\\"",
+				);
 				INFOPLIST_FILE = "FlickSquare/FlickSquare-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -355,8 +363,13 @@
 		9CE5E8D617553E22004D25A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FLICKR_API_KEY = 47ba17739cf66faefb12d310b055a2c7;
+				FLICKR_BASE_URL = "http://api.flickr.com/services/rest/?";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FlickSquare/FlickSquare-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"FLICKR_BASE_URL=@\\\"$(FLICKR_BASE_URL)\\ FLICKR_API_KEY=@\\\"$(FLICKR_API_KEY)\\\"",
+				);
 				INFOPLIST_FILE = "FlickSquare/FlickSquare-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
